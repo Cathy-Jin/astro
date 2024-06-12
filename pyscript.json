@@ -1,7 +1,7 @@
 {
     "packages": ["bs4", "requests"],
     "files": {
-        "/life_theme_calculator.py": "./life_theme_calculator.py",
+        "/astro/blob/main/life_theme_calculator.py": "./life_theme_calculator.py",
         "/birth_chart_craweler.py": "./birth_chart_craweler.py",
         "/constants.py": "./constants.py"
     }
