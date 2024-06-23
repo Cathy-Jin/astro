@@ -1,79 +1,117 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-SS5J7XZ2F6"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-SS5J7XZ2F6');
+      </script>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>Your Life Themes</title>
+      <title>Find Your Life Themes</title>
       <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.1/core.css">
       <script type="module" src="https://pyscript.net/releases/2024.5.1/core.js"></script>
       <style>
         body {
-          font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-          display: grid;
+          font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+          display: flex;
           justify-content: center;
+          flex-direction: column;
+          flex-wrap: wrap;
+          align-content: center;
+          align-items: flex-start;
         }
-        
         h1 {
           /* font-family: -apple-system, SF UI Display, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif; */
           font-size: 36px;
-          color: rgb(55, 53, 47)
+          color: rgb(67, 10, 114)
         }
         h2 {
           /* font-family: -apple-system, SF UI Display, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif; */
           font-size: 24px;
+          margin: 0 0 3px;
+          color: rgb(70, 15, 114)
         }
         h3 {
           /* font-family: -apple-system, SF UI Display, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif; */
           margin: -7px 0 7px;
           display: inherit;
-          font-size: 18px;
+          font-size: 20px;
           font-weight: 700;
           line-height: 1.5;
         }
         hr {
           border: 0;
           border-top: 1px solid #eee;
-          margin: 20px 0;
+          margin: 15px 0;
         }
         b {
           color: black;
         }
         p {
           margin: 0 0 8px;
-          font-size: 13px;
+          font-size: 14px;
           line-height: 24px;
           color: #999;
         }
         ul {
           margin: 0 0 8px;
-          font-size: 13px;
+          font-size: 14px;
           line-height: 24px;
           list-style-type: circle;
           padding-left: 30px;
           color: #999;
         }
         button {
-          background-color:rgb(77, 11, 132); /* Green */
+          background-color:rgb(77, 11, 132);
           border: none;
           color: white;
           padding: 5px 10px;
           text-align: center;
           text-decoration: none;
           display: inline-block;
-          font-size: 13px;
+          font-size: 14px;
           cursor: pointer;
+          margin-top: 10px;
+        }
+        .info_collector {
+            width: calc(100% - 10px); /* Subtracting 40px from the viewport width */
+            height: calc(100% - 10px); /* Subtracting 40px from the viewport height */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(229, 222, 234, 0.2);
+            border-radius: 8px;
+        }
+        .input_url {
+            width: 100%;
+            max-width: 80%; /* Ensures the box doesn't extend beyond the container */
+            min-width: 30ch; /* Minimum width of 30 characters */
+        }
+        .calculation_result {
+            width: calc(100% - 10px); /* Subtracting 40px from the viewport width */
+            height: calc(100% - 10px); /* Subtracting 40px from the viewport height */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #99999900;
+            border-radius: 8px;
         }
     </style>
   </head>
 
   <body>
     <h1>人生主题计算器</h1>
-    <p>从本命星盘中找到你的人生主题能量。</p>
-    <hr>
     <div class="info_collector">
       <p><b>输入你的基本信息:</b>
         <br>
-        出生时间：
+        出生日期：
         <input type="text" id="year" size="4" maxlength="4" placeholder="1970">
         年
         <select id="month" class="select-hidden">
@@ -125,6 +163,8 @@
           <option value="31">31</option>
         </select>
         日
+        <br>
+        出生时间：
         <select id="hour" class="select-hidden">
           <option value="0">0</option>
           <option value="1">1</option>
@@ -216,19 +256,23 @@
         </select>
         分
         <br>
-        国家：<input type="text" id="country" size="10" placeholder="中国" value="中国">
-        省份：<input type="text" id="state" size="10" placeholder="河南省">
-        城市：<input type="text" id="city" size=10" placeholder="洛阳市">
-         <button id="fetch_button_1">生成结果</button>
+        出生国家：<input type="text" id="country" size="10" placeholder="中国" value="中国">
+        <br>
+        出生省份：<input type="text" id="state" size="10" placeholder="河南省">
+        <br>
+        出生城市：<input type="text" id="city" size=10" placeholder="洛阳市">
+        <br>
+        <button id="fetch_button_1">生成结果</button>
       </p>
       <p><b>或者</b></p>
       <p>
         复制<a href="https://horoscopes.astro-seek.com/birth-chart-horoscope-online" target="_blank">Astro-Seek</a>上生成的星盘链接：
-        <input type="text" size="30" id="astro_seek_url" placeholder="https://horoscopes.astro-seek.com/..." />
-         <button id="fetch_button_2">生成结果</button>
+        <input type="text" class="input_url" id="astro_seek_url" placeholder="https://horoscopes.astro-seek.com/birth-chart-horoscope-online/..." />
+        <br>
+        <button id="fetch_button_2">生成结果</button>
       </p>
     </div>
-    <div id="output"></div>
+    <div class="calculation_result" id="output"></div>
     <script type="py" src="./main.py" config="./pyscript.json" async></script>
   </body>
 </html>

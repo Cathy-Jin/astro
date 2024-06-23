@@ -5,6 +5,9 @@ from pyscript.ffi import create_proxy
 
 
 async def get_life_themes_with_basic_info(event):
+    # clear the output
+    display('', target='output', append=False)
+
     year: str = document.querySelector('#year').value
     month: str = document.querySelector('#month').value
     day: str = document.querySelector('#day').value
@@ -37,6 +40,9 @@ async def get_life_themes_with_basic_info(event):
     
     
 async def get_life_themes_with_url(event):
+    # clear the output
+    display('', target='output', append=False)
+
     url: str = document.querySelector("#astro_seek_url").value
     birth_chart_info: str = await _fetch_astro_seek_page(url)
     if birth_chart_info.startswith('错误'):
@@ -67,7 +73,18 @@ async def _get_coordinates(city: str, state: str, country: str) -> Tuple[int, in
 
 
 async def _fetch_astro_seek_page(url: str = None) -> str:
-    response = await fetch(url)
+    # payload = {
+    #     'link': url
+    # }
+    # # Define the fetch options
+    # options = {
+    #     'method': 'POST',
+    #     'headers': {
+    #         'Content-Type': 'application/json'
+    #     },
+    #     'body': json.dumps(payload)
+    # } 
+    response = await fetch(url)  # https://astroseek-api.onrender.com/astroseek-bith-chart-calculator/v2  # https://astroseek-api.onrender.com/astroseek-calculator
     if response.status == 200:
         data = await response.text()
         return data
